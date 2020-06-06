@@ -1,5 +1,3 @@
-"# EDTeam-Zapateria" 
-
 # Postulación EDTEAM como IB Assistant!
 
 Diseña una Base de datos que permita solucionar el siguiente problema:
@@ -31,13 +29,31 @@ Llenado de Datos Iniciales 02 -> contiene los insert para poblar la base de dato
 Consultas  -> Respuesta a los desafios propuestos
 
 
+
+
+**Consulta 01**
+![Consulta01 ](https://i.pinimg.com/originals/bd/9a/62/bd9a62fa348cf27c6278e7432e09daab.png)
+
+
+**Consulta02**
+![enter image description here](https://i.pinimg.com/originals/af/65/f9/af65f93468f3817e776d5afdb7f82857.png)
+
+**Consulta03**
+![enter image description here](https://i.pinimg.com/originals/06/e6/32/06e63283f2be360b77023d320dfb730d.png)
+
+**Consulta04**
+![enter image description here](https://i.pinimg.com/originals/d3/18/15/d31815937f17390e12a887b357ed2ed4.png)
+
 ## Autor
 Luis Antonio Molina Yampa
 *Ing. de Sistemas*
 
 
 Facebook : [toito_lucho](https://www.facebook.com/toito.lucho)
+
 Instagram : [toito_lucho](https://www.instagram.com/toito_lucho/)
+
 Twitter : [toito_lucho](https://twitter.com/toito_lucho)
+
 Linkdln :  [Luis Antonio](https://www.linkedin.com/in/luis-antonio-molina-yampa-a571a2167/)
 
