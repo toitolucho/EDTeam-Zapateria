@@ -1,0 +1,86 @@
+CREATE DATABASE EDTEAM;
+GO
+
+
+CREATE TABLE Productos
+(
+	IdProducto		INT IDENTITY(1,1),
+	NombreProducto	VARCHAR(200),
+	Presentacion	VARCHAR(MAX),
+	Costo			DECIMAL(10,2),
+	CONSTRAINT PK_Productos PRIMARY KEY(IdProducto),
+	CONSTRAINT U_Nombre_Producto UNIQUE(NombreProducto),
+	CHECK(Costo>=0)
+)
+GO
+
+
+CREATE TABLE InventarioProductos
+(
+	IdProducto				INT
+	CostoVenta				DECIMAL(10,2),
+	FechaUltimoMovimiento	DATETIME,
+	TipoUltimoMovimiento	CHAR(1),
+	TotalValorado
+)
+
+CREATE TABLE Paises
+(
+	IdPais		INT IDENTITY(1,1),
+	NOmbrePais	VARCHAR(2000) UNIQUE,
+	CONSTRAINT PK_Paises PRIMARY KEY(IdPais)
+)
+
+CREATE TABLE Clientes
+(
+	IdCliente		INT IDENTITY(1,1),
+	NombreCliente	VARCHAR(200),
+	IdPais			INT
+	CONSTRAINT PK_Clientes PRIMARY KEY(IdCliente),
+	CONSTRAINT FK_Clientes_Paises FOREIGN KEY(IdPais) REFERENCES Paises(IdPais),
+	
+)
+
+CREATE TABLE IngresosProductos
+(
+	IdIngreso 			INT IDENTITY(1,1),
+	FechaRegistro		DATETIME,
+	CodigoEstadoIngreso CHAR(1) CHECK(CodigoEstadoIngreso IN ('I','F','A')), -- 'I'->INICIADO , 'F'->FINALIZADO, 'A'->ANULADO
+	Observaciones		VARCHAR(MAX),
+	CONSTRAINT FK_IngresosProductos PRIMARY KEY(IdIngreso)
+)
+
+CREATE TABLE IngresosProductosDetalle
+(
+	IdIngreso		INT,
+	IdProducto		INT,
+	PrecioIngreso	DECIMAL(10,2) CHECK(PrecioIngreso>0),
+	CantidadIngreso	INT CHECK(CantidadIngreso>0),
+	CONSTRAINT PK_IngresosProductosDetalle PRIMARY KEY(IdIngreso,IdProducto),
+	CONSTRAINT FK_IngresosProductosDetalle_Articulos FOREIGN KEY (IdProducto) REFERENCES Productos(IdProducto),
+	CONSTRAINT FK_IngresosProductosDetalle FOREIGN KEY (IdIngreso) REFERENCES IngresosProductos(IdIngreso)
+)
+
+
+CREATE TABLE SalidasProductos
+(
+	IdSalida 			INT IDENTITY(1,1),
+	NroFactura			VARCHAR(100),
+	IdCliente			INT,
+	FechaRegistro		DATETIME,
+	CodigoEstadoSalida CHAR(1) CHECK(CodigoEstadoSalida IN ('I','F','A')), -- 'I'->INICIADO , 'F'->FINALIZADO, 'A'->ANULADO
+	Observaciones		VARCHAR(MAX),
+	CONSTRAINT FK_SalidasProductos PRIMARY KEY(IdSalida),
+	CONSTRAINT FK_SalidasProductosClientes FOREIGN KEY (IdCliente) REFERENCES Clientes (IdCliente)
+)
+
+CREATE TABLE SalidasProductosDetalle
+(
+	IdSalida		INT,
+	IdProducto		INT,
+	PrecioSalida	DECIMAL(10,2) CHECK(PrecioSalida>0),
+	CantidadSalida	INT CHECK(CantidadSalida>0),
+	CONSTRAINT PK_SalidasProductosDetalle PRIMARY KEY(IdSalida,IdProducto),
+	CONSTRAINT FK_SalidasProductosDetalle_Articulos FOREIGN KEY (IdProducto) REFERENCES Productos(IdProducto),
+	CONSTRAINT FK_SalidasProductosDetalle FOREIGN KEY (IdIngreso) REFERENCES IngresosProductos(IdIngreso)
+)
